@@ -40,7 +40,7 @@ exports.findAll = (req, res, next) => {
     productName: req.query.productName,
   };
 
-  productsServices.getProducts(model, (error, results) => {
+  productsServices.getProducts(model, (error, results) => {//-----------------services class
     if (error) {
       return next(error);
     }

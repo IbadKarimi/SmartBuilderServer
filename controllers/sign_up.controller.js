@@ -32,5 +32,21 @@ exports.createSignUp = (req, res, next) => {
       }
     });
   };
+  //--------------------------------------------------------------------//
+  exports.findAllUsers = (req, res, next) => {
+    var model = {
+      firstName: req.query.firstName,
+    };
+  
+    signUpServices.getUsers(model, (error, results) => {
+      if (error) {
+        return next(error);
+      }
+      return res.status(200).send({
+        message: "Success",
+        data: results,
+      });
+    });
+  };
   
   //--------------------------------------------------------------------//

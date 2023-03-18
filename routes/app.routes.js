@@ -10,6 +10,7 @@ const router = express.Router();
 router.post("/SignUp", productsController.create);
 
 router.post("/UserSignUp", signUpController.createSignUp);
+router.get("/UserSignUp", signUpController.findAllUsers);
 
 // Retrieve all Products
 router.get("/SignUp", productsController.findAll);

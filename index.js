@@ -6,22 +6,16 @@ const { MONGO_DB_CONFIG } = require("./config/app.config");
 const errors = require("./middleware/errors.js");
 const os = require('os');
 
+const fs = require('fs-extra');
+var bodyParser=require('body-parser')
 
 
 
 
 
 
-// connect to mongodb
 
-/**
- * With useNewUrlParser: The underlying MongoDB driver has deprecated their current connection string parser.
- * Because this is a major change, they added the useNewUrlParser flag to allow users to fall back to the old parser if they find a bug in the new parser.
- * You should set useNewUrlParser: true unless that prevents you from connecting.
- *
- * With useUnifiedTopology, the MongoDB driver sends a heartbeat every heartbeatFrequencyMS to check on the status of the connection.
- * A heartbeat is subject to serverSelectionTimeoutMS , so the MongoDB driver will retry failed heartbeats for up to 30 seconds by default.
- */
+
 mongoose.Promise = global.Promise;
 mongoose
   .connect(MONGO_DB_CONFIG.DB, {
@@ -52,8 +46,42 @@ app.use(cors());
 
 
 // listen for requests
+
+
+//mongodb://127.0.0.1:27017/smartBuilder
+
+
+app.get('/uploadz',(req,res)=>res.send("Api is Working"));
+
+
+app.post('/uploadz' ,async(req,res,next)=>{
+
+  
+  console.log("APi is Correct");
+  await res.send({message:"Upload Image in flutter"});
+});
+
+
+app.post('/uploads',async(req,res)=>{
+  var name = req.body.name;
+var img = req.body.image;
+console.log(name);
+console.log(img);
+
+
+
+
+var realFile = Buffer.from(img, "base64");
+fs.writeFile(req.body.name,realFile, "utf8");
+});
+
 app.listen(process.env.port || 3000, function () {
   console.log("Ready to Go!");
 });
 
-//mongodb://127.0.0.1:27017/smartBuilder
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+
+app.post('/uploadImage', upload.single('image'), (req, res) => {
+  res.send('Image uploaded successfully');
+});

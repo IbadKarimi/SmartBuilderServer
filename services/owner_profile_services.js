@@ -1,8 +1,8 @@
-const { signUp } = require("../models/sign_up.models");
+const {ownerProfile} = require("../models/owner_profile.model");
 
 
 //------------------------_createSignUp----------------------------------------//
-async function _createSignUp(params, callback) { //params ke ander models argument pass horaha hai params=models
+async function createOwnerProfile(params, callback) { //params ke ander models argument pass horaha hai params=models
     if (!params.firstName) {
       return callback(
         {
@@ -12,8 +12,8 @@ async function _createSignUp(params, callback) { //params ke ander models argume
       );
     }
   
-    const signUpModel = new signUp(params); //create object of product model params=model
-    signUpModel
+    const ownerProfileModel = new ownerProfile(params); //create object of product model params=model passing data in data base here
+    ownerProfileModel
       .save()
       .then((response) => {
         return callback(null, response);
@@ -24,13 +24,13 @@ async function _createSignUp(params, callback) { //params ke ander models argume
   }
   
   //----------------------------------------------------------------------------//
-  async function getUsers(params, callback) {
+  async function getOwnerProfile(params, callback) {
     const firstName = params.firstName;
     var condition = firstName
       ? { firstName: { $regex: new RegExp(firstName), $options: "i" } }
       : {};
   
-    signUp
+      ownerProfile
       .find(condition)
       .then((response) => {
         return callback(null, response);
@@ -41,7 +41,7 @@ async function _createSignUp(params, callback) { //params ke ander models argume
   }
 
   module.exports = {
-    _createSignUp,
-    getUsers,
+    createOwnerProfile,
+    getOwnerProfile,
    
   };

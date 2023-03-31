@@ -1,4 +1,5 @@
-const multer = require('multer');
+//-----------------------------------only single photo-------------//
+/*const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -11,4 +12,37 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-module.exports=upload.single("productImage");
+module.exports=upload.single("productImage");*/
+
+//-----------------multiple photo--------------------//
+
+
+const multer = require('multer');
+// Set up multer storage
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    if (file.fieldname === 'uploadPhoto') {
+      cb(null, file.originalname);
+    } else if (file.fieldname === 'uploadCnicPhoto') {
+      cb(null, file.originalname);
+    } else {
+      cb(new Error('Invalid field name'));
+    }
+  }
+});
+
+// Set up multer middleware
+const upload = multer({ storage: storage });
+
+// Handle the POST request
+module.exports=upload.fields([
+  { name: 'uploadPhoto', maxCount: 1 },
+  { name: 'uploadCnicPhoto', maxCount: 1 },
+]);
+
+ 
+
+

@@ -10,13 +10,14 @@ exports.create = (req, res, next) => {
     } else {
       const urlUploadPhoto = req.protocol + "://" + req.get("host");
 
-      const pathUploadPhoto =
-        req.file != undefined ? req.file.path.replace(/\\/g, "/") : "";
+      const pathUploadPhoto =  req.files['uploadPhoto'][0].path.replace(/\\/g, '/');
+       // req.file != undefined ? req.file.path.replace(/\\/g, "/") : "";
 
         const urlUploadCinicPhoto = req.protocol + "://" + req.get("host");
 
-      const pathUploadCnicPhoto =
-        req.file != undefined ? req.file.path.replace(/\\/g, "/") : "";
+      const pathUploadCnicPhoto =req.files['uploadCnicPhoto'][0].path.replace(/\\/g, '/');
+        //req.file != undefined ? req.file.path.replace(/\\/g, "/") : "";
+        
 
       var model = {
         firstName: req.body.firstName,

@@ -54,34 +54,12 @@ app.use(cors());
 app.get('/uploadz',(req,res)=>res.send("Api is Working"));
 
 
-app.post('/uploadz' ,async(req,res,next)=>{
-
-  
-  console.log("APi is Correct");
-  await res.send({message:"Upload Image in flutter"});
-});
-
-
-app.post('/uploads',async(req,res)=>{
-  var name = req.body.name;
-var img = req.body.image;
-console.log(name);
-console.log(img);
 
 
 
 
-var realFile = Buffer.from(img, "base64");
-fs.writeFile(req.body.name,realFile, "utf8");
-});
 
 app.listen(process.env.port || 3000, function () {
   console.log("Ready to Go!");
 });
 
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
-
-app.post('/uploadImage', upload.single('image'), (req, res) => {
-  res.send('Image uploaded successfully');
-});

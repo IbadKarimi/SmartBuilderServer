@@ -1,5 +1,5 @@
 const {ownerProfile} = require("../models/owner_profile.model");
-
+const {ownerProfileCoverPhotoModel} = require("../models/owner_profile_coverPhoto.model");
 
 //------------------------_createSignUp----------------------------------------//
 async function createOwnerProfile(params, callback) { //params ke ander models argument pass horaha hai params=models
@@ -22,8 +22,45 @@ async function createOwnerProfile(params, callback) { //params ke ander models a
         return callback(error);
       });
   }
+
+  async function createOwnerCoverEmail(params, callback) { //params ke ander models argument pass horaha hai params=models
+    if (!params.email) {
+      return callback(
+        {
+          message: "Email is Required",
+        },
+        ""
+      );
+    }
+  
+    const ownerProfileModel = new ownerProfileCoverPhotoModel(params); //create object of product model params=model passing data in data base here
+    ownerProfileModel
+      .save()
+      .then((response) => {
+        return callback(null, response);
+      })
+      .catch((error) => {
+        return callback(error);
+      });
+  }
   
   //----------------------------------------------------------------------------//
+  async function getOwnerCoverPhotoEmail(params, callback) {
+    const email = params.email;
+    var condition = email
+      ? { email: { $regex: new RegExp(email), $options: "i" } }
+      : {};
+  
+      ownerProfileCoverPhotoModel
+      .find(condition)
+      .then((response) => {
+        return callback(null, response);
+      })
+      .catch((error) => {
+        return callback(error);
+      });
+  }
+  
   async function getOwnerProfile(params, callback) {
     const firstName = params.firstName;
     var condition = firstName
@@ -39,9 +76,39 @@ async function createOwnerProfile(params, callback) { //params ke ander models a
         return callback(error);
       });
   }
+  async function updateCoverPhotoEmailServices(params, callback) {
+    const userId = params.userId;
+  
+    ownerProfileCoverPhotoModel
+      .findByIdAndUpdate(userId, params, { useFindAndModify: false })
+      .then((response) => {
+        if (!response) callback(`Cannot update Tutorial with id=${userId}. Maybe Tutorial was not found!`);
+        else callback(null, response);
+      })
+      .catch((error) => {
+        return callback(error);
+      });
+  }
+  async function updateProfilePhotoServices(params, callback) {
+    const userId = params.userId;
+  
+    ownerProfile
+      .findByIdAndUpdate(userId, params, { useFindAndModify: false })
+      .then((response) => {
+        if (!response) callback(`Cannot update Tutorial with id=${userId}. Maybe Tutorial was not found!`);
+        else callback(null, response);
+      })
+      .catch((error) => {
+        return callback(error);
+      });
+  }
 
   module.exports = {
     createOwnerProfile,
+    createOwnerCoverEmail,
+    getOwnerCoverPhotoEmail,
     getOwnerProfile,
+   updateCoverPhotoEmailServices,
+   updateProfilePhotoServices,
    
   };

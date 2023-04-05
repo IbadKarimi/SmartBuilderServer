@@ -50,3 +50,48 @@ exports.createSignUp = (req, res, next) => {
   };
   
   //--------------------------------------------------------------------//
+
+  exports.findOne = (req, res, next) => {
+    var model = {
+      email: req.params.email,
+    };
+  
+    signUpServices.getUserByEmail(model, (error, results) => {
+      if (error) {
+        return next(error);
+      }
+      return res.status(200).send({
+        message: "Success",
+        data: results,
+      });
+    });
+  };
+
+  //---------------------------route->sign_up_controller.js-------------------------------------//
+  exports.update = (req, res, next) => {
+    upload(req, res, function (err) {
+      if (err) {
+        next(err);
+      } else {
+        var model = {
+          userId: req.params.id,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email,
+          password: req.body.password,
+        };
+  
+        console.log(model);
+  
+        signUpServices.updateUser(model, (error, results) => {
+          if (error) {
+            return next(error);
+          }
+          return res.status(200).send({
+            message: "Success",
+            data: results,
+          });
+        });
+      }
+    });
+  };

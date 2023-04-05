@@ -21,6 +21,11 @@ router.get("/UserSignUp", signUpController.findAllUsers);
 //------------------------Owner Profile----------------------//
 router.post("/CreateOwnerProfile", ownerProfileController.create);
 router.get("/GetOwnerProfile", ownerProfileController.findAll);
+router.put("/OwnerProfile/:id", ownerProfileController.updateProfilePhoto);
+//----------------------cover photo---------------------------------//
+router.post("/OwnerProfileCoverPhoto", ownerProfileController.createCoverPhotoEmail);
+router.get("/OwnerProfileCoverPhoto", ownerProfileController.findAllCoverPhotoEmail);
+router.put("/CoverEmail/:id", ownerProfileController.updateCoverPhotoEmail);
 
 
 //------------------------------------------------------------//

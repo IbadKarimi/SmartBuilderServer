@@ -6,6 +6,8 @@ const ownerProfile = mongoose.model(
       {
         firstName: String,
         lastName: String,
+        email:String,
+        occupation:String,
         country: String,
         city: String,
         zipPostalCode:String,
@@ -15,6 +17,7 @@ const ownerProfile = mongoose.model(
         ntnNo:String,
         uploadPhoto:String,
         uploadCnicPhoto:String,
+        timeNow:String,
       },
       { timestamps: true }
     )

@@ -49,6 +49,32 @@ exports.create = (req, res, next) => {
     }
   });
 };
+//-------------------------------------------Owner About---------------//
+exports.ownerProfileAbout = (req, res, next) => {
+  upload(req, res, function (err) {
+    if (err) {
+      next(err);
+    } else {
+      
+      var model = {
+        
+        ownerEmail: req.body.ownerEmail,
+        ownerAbout: req.body.ownerAbout,
+       
+      
+      };
+      ownerProfileServices._ownerProfileAboutServices(model, (error, results) => {
+        if (error) {
+          return next(error);
+        }
+        return res.status(200).send({
+          message: "Success",
+          data: results,
+        });
+      });
+    }
+  });
+};
 //-----------------------------------create cover photo and email----------//
 exports.createCoverPhotoEmail = (req, res, next) => {
   upload(req, res, function (err) {
@@ -88,6 +114,21 @@ exports.findAll = (req, res, next) => {
   };
 
   ownerProfileServices.getOwnerProfile(model, (error, results) => {//-----------------services class
+    if (error) {
+      return next(error);
+    }
+    return res.status(200).send({
+      message: "Success",
+      data: results,
+    });
+  });
+};
+exports.findAllAbouts = (req, res, next) => {
+  var model = {
+  ownerEmail: req.query.ownerEmail,
+  };
+
+  ownerProfileServices.getOwnerProfileAbout(model, (error, results) => {//-----------------services class
     if (error) {
       return next(error);
     }
@@ -172,6 +213,21 @@ exports.updateProfilePhoto = (req, res, next) => {
         });
       });
     }
+  });
+};
+exports.AboutfindOne = (req, res, next) => {
+  var model = {
+    ownerEmail: req.params.ownerEmail,
+  };
+
+  ownerProfileServices.getAboutByEmail(model, (error, results) => {
+    if (error) {
+      return next(error);
+    }
+    return res.status(200).send({
+      message: "Success",
+      data: results,
+    });
   });
 };
 

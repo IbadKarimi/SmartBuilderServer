@@ -65,7 +65,7 @@ async function getProductById(params, callback) {
   const productId = params.productId;
 
   product
-    .findById(productId)
+    .findOne(productId)
     .then((response) => {
       if (!response) callback("Not found Product with id " + productId);
       else callback(null, response);

@@ -32,7 +32,10 @@ const storage = multer.diskStorage({
     }else if (file.fieldname === 'uploadCoverPhoto') {
       cb(null, file.originalname);
       
-    } else {
+    }else if (file.fieldname === 'projectFile') {
+      cb(null, file.originalname);
+      
+    }else {
       cb(new Error('Invalid field name'));
     }
   }
@@ -46,6 +49,7 @@ module.exports=upload.fields([
   { name: 'uploadPhoto', maxCount: 1 },
   { name: 'uploadCnicPhoto', maxCount: 1 },
   { name: 'uploadCoverPhoto', maxCount: 1 },
+  { name: 'projectFile', maxCount: 1 },
 ]);
 
  

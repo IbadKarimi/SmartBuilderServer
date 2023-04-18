@@ -1,5 +1,6 @@
 const {ownerProfile} = require("../models/owner_profile.model");
 const {ownerProfileCoverPhotoModel} = require("../models/owner_profile_coverPhoto.model");
+const {ownerProfileAboutModels} = require("../models/owner_profile_about.model");
 
 //------------------------_createSignUp----------------------------------------//
 async function createOwnerProfile(params, callback) { //params ke ander models argument pass horaha hai params=models
@@ -44,6 +45,7 @@ async function createOwnerProfile(params, callback) { //params ke ander models a
       });
   }
   
+  
   //----------------------------------------------------------------------------//
   async function getOwnerCoverPhotoEmail(params, callback) {
     const email = params.email;
@@ -68,6 +70,21 @@ async function createOwnerProfile(params, callback) { //params ke ander models a
       : {};
   
       ownerProfile
+      .find(condition)
+      .then((response) => {
+        return callback(null, response);
+      })
+      .catch((error) => {
+        return callback(error);
+      });
+  }
+  async function getOwnerProfileAbout(params, callback) {
+    const ownerEmail = params.ownerEmail;
+    var condition = ownerEmail
+      ? { ownerEmail: { $regex: new RegExp(ownerEmail), $options: "i" } }
+      : {};
+  
+      ownerProfileAboutModels
       .find(condition)
       .then((response) => {
         return callback(null, response);
@@ -102,7 +119,39 @@ async function createOwnerProfile(params, callback) { //params ke ander models a
         return callback(error);
       });
   }
-
+  async function _ownerProfileAboutServices(params, callback) { //params ke ander models argument pass horaha hai params=models
+    if (!params.ownerEmail) {
+      return callback(
+        {
+          message: "Email is Required",
+        },
+        ""
+      );
+    }
+  
+    const _ownerProfile = new ownerProfileAboutModels(params); //create object of product model params=model
+    _ownerProfile
+      .save()
+      .then((response) => {
+        return callback(null, response);
+      })
+      .catch((error) => {
+        return callback(error);
+      });
+  }
+  async function getAboutByEmail(params, callback) {
+    const ownerEmail = params.ownerEmail;
+  
+    ownerProfileAboutModels
+      .findOne(ownerEmail)
+      .then((response) => {
+        if (!response) callback("Not found Product with id " + productId);
+        else callback(null, response);
+      })
+      .catch((error) => {
+        return callback(error);
+      });
+  }
   module.exports = {
     createOwnerProfile,
     createOwnerCoverEmail,
@@ -110,5 +159,9 @@ async function createOwnerProfile(params, callback) { //params ke ander models a
     getOwnerProfile,
    updateCoverPhotoEmailServices,
    updateProfilePhotoServices,
+   _ownerProfileAboutServices,
+   getOwnerProfileAbout,
+   getAboutByEmail,
+
    
   };

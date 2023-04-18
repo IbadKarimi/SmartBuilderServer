@@ -4,6 +4,8 @@ const signUpController = require("../controllers/sign_up.controller");
 
 const ownerProfileController = require("../controllers/owner_profile_controller");
 
+const ownerSubmitProposalController = require("../controllers/owner_submit_proposal_controller");
+
 
 
 
@@ -16,10 +18,12 @@ router.post("/SignUp", productsController.create);
 router.post("/UserSignUp", signUpController.createSignUp);
 router.get("/UserSignUp", signUpController.findAllUsers);
 
-//----------------------------------------------------------//
-
+//----------------------------Owner About Apis------------------------------//
+router.post("/OwnerProfileAbout", ownerProfileController.ownerProfileAbout);
+router.get("/OwnerProfileAbout", ownerProfileController.findAllAbouts);
 //------------------------Owner Profile----------------------//
 router.post("/CreateOwnerProfile", ownerProfileController.create);
+
 router.get("/GetOwnerProfile", ownerProfileController.findAll);
 router.put("/OwnerProfile/:id", ownerProfileController.updateProfilePhoto);
 //----------------------cover photo---------------------------------//
@@ -28,13 +32,16 @@ router.get("/OwnerProfileCoverPhoto", ownerProfileController.findAllCoverPhotoEm
 router.put("/CoverEmail/:id", ownerProfileController.updateCoverPhotoEmail);
 
 
-//------------------------------------------------------------//
-
+//----------------------Owner Submit Proposal--------------------------------------//
+router.post("/OwnerSubmitProposals", ownerSubmitProposalController.create);
+router.get("/OwnerSubmitProposals", ownerSubmitProposalController.findAll);
+//---------------------------------------------------------------------------------//
 // Retrieve all Products
 router.get("/SignUp", productsController.findAll);
 
 // Retrieve a single Product with id
 router.get("/products/:id", productsController.findOne);
+router.get("/OwnerProfileAbout/:email", ownerProfileController.AboutfindOne);
 
 // Update a Product with id
 router.put("/products/:id", productsController.update);

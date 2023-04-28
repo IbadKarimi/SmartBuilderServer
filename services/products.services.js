@@ -79,7 +79,7 @@ async function updateProduct(params, callback) {
   const productId = params.productId;
 
   product
-    .findByIdAndUpdate(productId, params, { useFindAndModify: false })
+    .updateOne(productId, params, { useFindAndModify: false })
     .then((response) => {
       if (!response) callback(`Cannot update Tutorial with id=${productId}. Maybe Tutorial was not found!`);
       else callback(null, response);

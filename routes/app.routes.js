@@ -6,6 +6,9 @@ const ownerProfileController = require("../controllers/owner_profile_controller"
 
 const ownerSubmitProposalController = require("../controllers/owner_submit_proposal_controller");
 
+const professionalWorkExperienceController = require("../controllers/professionals_work_experience_controller");
+
+const professionalsProfileController = require("../controllers/professionals_profile_controller");
 
 
 
@@ -56,5 +59,13 @@ router.post('upload',async(req,res,next)=>{
     console.log("APi is Correct");
     await res.send({message:"Upload Image in flutter"});
   });
+  //------------------------------------Professionals Api---------------------------//
+  router.post("/WorkExperinece", professionalWorkExperienceController.createProfessioanlWorkExperience);
+  router.get("/WorkExperinece", professionalWorkExperienceController.findAllWorkExpereince);
+  //-----------------------------------Professionals Profile Api--------------------//
+  router.post("/ProfessionalsProfile", professionalsProfileController.create);
+  router.get("/ProfessionalsProfile", professionalsProfileController.findAll);
+
+
 
 module.exports = router;

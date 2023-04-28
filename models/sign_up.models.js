@@ -8,7 +8,7 @@ const signUp = mongoose.model(
         lastName: String,
         email: String,
         password: String,
-        country:String,
+        role:String,
       },
       { timestamps: true }
     )

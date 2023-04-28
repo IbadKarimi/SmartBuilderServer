@@ -16,7 +16,7 @@ exports.createSignUp = (req, res, next) => {
           lastName: req.body.lastName,
           email: req.body.email,
           password: req.body.password,
-          country: req.body.country,
+          role:req.body.role,
         
         };
   

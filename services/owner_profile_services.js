@@ -79,9 +79,9 @@ async function createOwnerProfile(params, callback) { //params ke ander models a
       });
   }
   async function getOwnerProfileAbout(params, callback) {
-    const ownerEmail = params.ownerEmail;
-    var condition = ownerEmail
-      ? { ownerEmail: { $regex: new RegExp(ownerEmail), $options: "i" } }
+    const email = params.email;
+    var condition = email
+      ? { ownerEmail: { $regex: new RegExp(email), $options: "i" } }
       : {};
   
       ownerProfileAboutModels
@@ -120,7 +120,7 @@ async function createOwnerProfile(params, callback) { //params ke ander models a
       });
   }
   async function _ownerProfileAboutServices(params, callback) { //params ke ander models argument pass horaha hai params=models
-    if (!params.ownerEmail) {
+    if (!params.email) {
       return callback(
         {
           message: "Email is Required",

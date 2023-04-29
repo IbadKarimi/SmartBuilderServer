@@ -10,6 +10,7 @@ const professionalWorkExperienceController = require("../controllers/professiona
 
 const professionalsProfileController = require("../controllers/professionals_profile_controller");
 
+const proCoverPhotoController = require("../controllers/pro_profile_cover_photo.controller");
 
 
 const express = require("express");
@@ -65,6 +66,13 @@ router.post('upload',async(req,res,next)=>{
   //-----------------------------------Professionals Profile Api--------------------//
   router.post("/ProfessionalsProfile", professionalsProfileController.create);
   router.get("/ProfessionalsProfile", professionalsProfileController.findAll);
+
+  //-------------------------------------Professionals Cover Photo----------------------//
+router.post("/ProCoverPhoto", proCoverPhotoController.createCoverPhotoEmail);
+router.get("/ProCoverPhoto", proCoverPhotoController.findAllCoverPhotoEmail);
+
+
+router.put("/CoverEmail/:id", ownerProfileController.updateCoverPhotoEmail);
 
 
 

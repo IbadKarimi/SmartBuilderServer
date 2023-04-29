@@ -58,8 +58,8 @@ exports.ownerProfileAbout = (req, res, next) => {
       
       var model = {
         
-        ownerEmail: req.body.ownerEmail,
-        ownerAbout: req.body.ownerAbout,
+        email: req.body.email,
+        about: req.body.about,
        
       
       };

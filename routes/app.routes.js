@@ -12,6 +12,10 @@ const professionalsProfileController = require("../controllers/professionals_pro
 
 const proCoverPhotoController = require("../controllers/pro_profile_cover_photo.controller");
 
+const proEducationHistory = require("../controllers/professionals_education_history.controller");
+
+const proSkillsController = require("../controllers/professionals_skills_controller");
+
 
 const express = require("express");
 const router = express.Router();
@@ -66,11 +70,19 @@ router.post('upload',async(req,res,next)=>{
   //-----------------------------------Professionals Profile Api--------------------//
   router.post("/ProfessionalsProfile", professionalsProfileController.create);
   router.get("/ProfessionalsProfile", professionalsProfileController.findAll);
+  router.put("/ProfessionalsProfile/:id", professionalsProfileController.updateProProfilePhoto);
 
   //-------------------------------------Professionals Cover Photo----------------------//
 router.post("/ProCoverPhoto", proCoverPhotoController.createCoverPhotoEmail);
 router.get("/ProCoverPhoto", proCoverPhotoController.findAllCoverPhotoEmail);
 
+//-----------------------------------------Professionals Education History--------------//
+router.post("/EducationHistory", proEducationHistory.createProfessioanalsEducationHistory);
+router.get("/EducationHistory", proEducationHistory.findAllEducationHistory);
+
+//-----------------------------------------Professional Skills---------------------------------------------//
+router.post("/ProfessionalsSkills", proSkillsController.createProfessioanalsSkills);
+router.get("/ProfessionalsSkills", proSkillsController.findAllSkills);
 
 router.put("/CoverEmail/:id", ownerProfileController.updateCoverPhotoEmail);
 

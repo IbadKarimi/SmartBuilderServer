@@ -23,6 +23,11 @@ const ownerSubmitProposalsModels = mongoose.model(
         projectFile:String,
         proposalCreatedTime:String,
         proposalSavedDate:String,
+       ownerFirstName:String,
+       ownerLastName:String,
+       ownerCity:String,
+       ownerCountry:String,
+       ownerProfilePicUrl:String,
         
     
       },

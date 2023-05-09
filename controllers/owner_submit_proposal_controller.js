@@ -33,6 +33,11 @@ exports.create = (req, res, next) => {
             projectFile: path != "" ? url + "/" + path : "",
             proposalCreatedTime:req.body.proposalCreatedTime,
             proposalSavedDate:req.body.proposalSavedDate,
+            ownerFirstName:req.body.ownerFirstName,
+            ownerLastName:req.body.ownerLastName,
+            ownerCity:req.body.ownerCity,
+            ownerCountry:req.body.ownerCountry,
+            ownerProfilePicUrl:req.body.ownerProfilePicUrl,
   
           };
           // do something with the path...
@@ -60,6 +65,11 @@ exports.create = (req, res, next) => {
             projectFile: path != "" ? url + "/" + path : "",
             proposalCreatedTime:req.body.proposalCreatedTime,
             proposalSavedDate:req.body.proposalSavedDate,
+            ownerFirstName:req.body.ownerFirstName,
+            ownerLastName:req.body.ownerLastName,
+            ownerCity:req.body.ownerCity,
+            ownerCountry:req.body.ownerCountry,
+            ownerProfilePicUrl:req.body.ownerProfilePicUrl,
   
           };
         }

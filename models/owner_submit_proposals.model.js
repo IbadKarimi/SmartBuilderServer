@@ -9,22 +9,25 @@ const ownerSubmitProposalsModels = mongoose.model(
         projectTitle: String,
         projectType: String,
         workMonths:String,
+        projectBudget:String,
         plotLengthA: String,
         plotLengthB: String,
         plotWidthA: String,
         plotWidthB: String,
         actualPlotSize: String,
         floors: String,
+        groundFloor:String,
         city: String,
         plotLocation: String,
         describeYourProject:String,
         projectFile:String,
         proposalCreatedTime:String,
         proposalSavedDate:String,
-        counter:String,
-      
+        
+    
       },
-      { timestamps: true }
+      { timestamps: true },
+    
     )
   );
 

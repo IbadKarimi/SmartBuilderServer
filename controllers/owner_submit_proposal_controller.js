@@ -38,6 +38,7 @@ exports.create = (req, res, next) => {
             ownerCity:req.body.ownerCity,
             ownerCountry:req.body.ownerCountry,
             ownerProfilePicUrl:req.body.ownerProfilePicUrl,
+            selectedContractorCity:req.body.selectedContractorCity,
   
           };
           // do something with the path...
@@ -70,6 +71,7 @@ exports.create = (req, res, next) => {
             ownerCity:req.body.ownerCity,
             ownerCountry:req.body.ownerCountry,
             ownerProfilePicUrl:req.body.ownerProfilePicUrl,
+            selectedContractorCity:req.body.selectedContractorCity,
   
           };
         }

@@ -28,6 +28,7 @@ const ownerSubmitProposalsModels = mongoose.model(
        ownerCity:String,
        ownerCountry:String,
        ownerProfilePicUrl:String,
+       selectedContractorCity:String,
         
     
       },

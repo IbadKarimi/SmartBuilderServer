@@ -16,6 +16,8 @@ const proEducationHistory = require("../controllers/professionals_education_hist
 
 const proSkillsController = require("../controllers/professionals_skills_controller");
 
+const proAcceptedProposalController = require("../controllers/pro_accepted_proposal_controller");
+
 
 const express = require("express");
 const router = express.Router();
@@ -85,6 +87,10 @@ router.post("/ProfessionalsSkills", proSkillsController.createProfessioanalsSkil
 router.get("/ProfessionalsSkills", proSkillsController.findAllSkills);
 
 router.put("/CoverEmail/:id", ownerProfileController.updateCoverPhotoEmail);
+
+//-------------------------------------------------Professional Accepted Proposal---------------------------//
+router.post("/AcceptedProposal",proAcceptedProposalController.createAcceptedProposal);
+router.get("/AcceptedProposal", proAcceptedProposalController.findAllAcceptedProposal);
 
 
 

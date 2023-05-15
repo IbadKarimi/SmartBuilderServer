@@ -40,6 +40,21 @@ async function ownerSubmitProposals(params, callback) { //params ke ander models
   module.exports = {
     ownerSubmitProposals,
     getOwnerSubmitProposals,
+    updateStatusServices,
    
    
   };
+
+  async function updateStatusServices(params, callback) {
+    const userId = params.userId;
+  
+    ownerSubmitProposalsModels
+      .findByIdAndUpdate(userId, params, { useFindAndModify: false })
+      .then((response) => {
+        if (!response) callback(`Cannot update Tutorial with id=${userId}. Maybe Tutorial was not found!`);
+        else callback(null, response);
+      })
+      .catch((error) => {
+        return callback(error);
+      });
+  }

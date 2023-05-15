@@ -15,6 +15,7 @@ exports.create = (req, res, next) => {
           model = {
             email:req.body.email,
             to:req.body.to,
+            status:req.body.status== undefined ? "" :req.body.status,
             projectTitle: req.body.projectTitle,
             projectType: req.body.projectType,
             workMonths:req.body.workMonths,
@@ -39,6 +40,14 @@ exports.create = (req, res, next) => {
             ownerCountry:req.body.ownerCountry,
             ownerProfilePicUrl:req.body.ownerProfilePicUrl,
             selectedContractorCity:req.body.selectedContractorCity,
+
+
+            proFirstName:req.body.proFirstName== undefined ? "" :req.body.proFirstName,
+            proLastName:req.body.proLastName== undefined ? "" :req.body.proLastName,
+            proCity:req.body.proCity== undefined ? "" :req.body.proCity,
+            proCountry:req.body.proCountry== undefined ? "" :req.body.proCountry,
+            proProfilePicUrl:req.body.proProfilePicUrl== undefined ? "" :req.body.proProfilePicUrl,
+            proEmail:req.body.proEmail== undefined ? "" :req.body.proEmail,
   
           };
           // do something with the path...
@@ -48,6 +57,7 @@ exports.create = (req, res, next) => {
            model = {
             email:req.body.email,
             to:req.body.to,
+            status:req.body.status== undefined ? "" :req.body.status,
             projectTitle: req.body.projectTitle,
             projectType: req.body.projectType,
             workMonths:req.body.workMonths,
@@ -72,6 +82,14 @@ exports.create = (req, res, next) => {
             ownerCountry:req.body.ownerCountry,
             ownerProfilePicUrl:req.body.ownerProfilePicUrl,
             selectedContractorCity:req.body.selectedContractorCity,
+
+            proFirstName:req.body.proFirstName== undefined ? "" :req.body.proFirstName,
+            proLastName:req.body.proLastName== undefined ? "" :req.body.proLastName,
+            proCity:req.body.proCity== undefined ? "" :req.body.proCity,
+            proCountry:req.body.proCountry== undefined ? "" :req.body.proCountry,
+            proProfilePicUrl:req.body.proProfilePicUrl== undefined ? "" :req.body.proProfilePicUrl,
+            proEmail:req.body.proEmail== undefined ? "" :req.body.proEmail,
+          
   
           };
         }
@@ -104,5 +122,42 @@ exports.create = (req, res, next) => {
         message: "Success",
         data: results,
       });
+    });
+  };
+
+
+  exports.updateStatus = (req, res, next) => {
+    upload(req, res, function (err) {
+      if (err) {
+        next(err);
+      } else {
+       
+  
+        var model = {
+          userId: req.params.id,
+          status:req.body.status,
+          proFirstName:req.body.proFirstName,
+          proLastName:req.body.proLastName,
+          proCity:req.body.proCity,
+          proCountry:req.body.proCountry,
+          proProfilePicUrl:req.body.proProfilePicUrl,
+          proEmail:req.body.proEmail,
+          proposalAcceptedTime:req.body.proposalAcceptedTime,
+          proposalAcceptedDate:req.body.proposalAccceptedDate,
+          
+        };
+  
+        console.log(model);
+  
+        ownerSubmitProposalsServices.updateStatusServices(model, (error, results) => {
+          if (error) {
+            return next(error);
+          }
+          return res.status(200).send({
+            message: "Success",
+            data: results,
+          });
+        });
+      }
     });
   };

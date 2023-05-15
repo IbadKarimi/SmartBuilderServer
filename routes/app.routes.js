@@ -45,6 +45,7 @@ router.put("/CoverEmail/:id", ownerProfileController.updateCoverPhotoEmail);
 //----------------------Owner Submit Proposal--------------------------------------//
 router.post("/OwnerSubmitProposals", ownerSubmitProposalController.create);
 router.get("/OwnerSubmitProposals", ownerSubmitProposalController.findAll);
+router.put("/OwnerSubmitProposals/:id", ownerSubmitProposalController.updateStatus);
 //---------------------------------------------------------------------------------//
 // Retrieve all Products
 router.get("/SignUp", productsController.findAll);

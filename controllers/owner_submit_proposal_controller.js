@@ -48,6 +48,11 @@ exports.create = (req, res, next) => {
             proCountry:req.body.proCountry== undefined ? "" :req.body.proCountry,
             proProfilePicUrl:req.body.proProfilePicUrl== undefined ? "" :req.body.proProfilePicUrl,
             proEmail:req.body.proEmail== undefined ? "" :req.body.proEmail,
+
+            offer:req.body.offer== undefined ? "" :req.body.offer,
+            offerCreatedTime:req.body.offerCreatedTime== undefined ? "" :req.body.offerCreatedTime,
+            offerSavedDate:req.body.offerSavedDate== undefined ? "" :req.body.offerSavedDate,
+            offerStatus:req.body.offerStatus== undefined ? "" :req.body.offerStatus,
   
           };
           // do something with the path...
@@ -89,6 +94,12 @@ exports.create = (req, res, next) => {
             proCountry:req.body.proCountry== undefined ? "" :req.body.proCountry,
             proProfilePicUrl:req.body.proProfilePicUrl== undefined ? "" :req.body.proProfilePicUrl,
             proEmail:req.body.proEmail== undefined ? "" :req.body.proEmail,
+
+            offer:req.body.offer== undefined ? "" :req.body.offer,
+            offerCreatedTime:req.body.offerCreatedTime== undefined ? "" :req.body.offerCreatedTime,
+            offerSavedDate:req.body.offerSavedDate== undefined ? "" :req.body.offerSavedDate,
+            offerStatus:req.body.offerStatus== undefined ? "" :req.body.offerStatus,
+            
           
   
           };
@@ -144,6 +155,12 @@ exports.create = (req, res, next) => {
           proEmail:req.body.proEmail,
           proposalAcceptedTime:req.body.proposalAcceptedTime,
           proposalAcceptedDate:req.body.proposalAccceptedDate,
+
+
+          offer:req.body.offer,
+          offerCreatedTime:req.body.offerCreatedTime,
+          offerSavedDate:req.body.offerSavedDate,
+          offerStatus:req.body.offerStatus,
           
         };
   

@@ -38,6 +38,14 @@ const ownerSubmitProposalsModels = mongoose.model(
         proProfilePicUrl:String,
         proposalAcceptedTime:String,
         proposalAcceptedDate:String,
+
+        offer:String,
+        offerCreatedTime:String,
+        offerSavedDate:String,
+        offerStatus:String,
+
+        
+        
         
     
       },

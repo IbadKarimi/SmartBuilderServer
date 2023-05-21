@@ -18,6 +18,10 @@ const proSkillsController = require("../controllers/professionals_skills_control
 
 const proAcceptedProposalController = require("../controllers/pro_accepted_proposal_controller");
 
+const offerProposalController = require("../controllers/offer_proposal_controller");
+
+const retailerProfileController = require("../controllers/retailer_profile_controller");
+
 
 const express = require("express");
 const router = express.Router();
@@ -46,6 +50,13 @@ router.put("/CoverEmail/:id", ownerProfileController.updateCoverPhotoEmail);
 router.post("/OwnerSubmitProposals", ownerSubmitProposalController.create);
 router.get("/OwnerSubmitProposals", ownerSubmitProposalController.findAll);
 router.put("/OwnerSubmitProposals/:id", ownerSubmitProposalController.updateStatus);
+//---------------------------Propsals Offer------------------------------------------------//
+offerProposalController 
+
+router.post("/OfferProposals", offerProposalController.create );
+router.get("/OfferProposals", offerProposalController.findAll);
+router.put("/OfferProposals/:id",offerProposalController.updateStatus);
+
 //---------------------------------------------------------------------------------//
 // Retrieve all Products
 router.get("/SignUp", productsController.findAll);
@@ -93,6 +104,13 @@ router.put("/CoverEmail/:id", ownerProfileController.updateCoverPhotoEmail);
 router.post("/AcceptedProposal",proAcceptedProposalController.createAcceptedProposal);
 router.get("/AcceptedProposal", proAcceptedProposalController.findAllAcceptedProposal);
 
+//-------------------------------------------------Retailer Profile---------------------------//
+router.post("/RetailerProfile",retailerProfileController.create);
+router.get("/RetailerProfile", retailerProfileController.findAll);
+router.put("/RetailerProfile/:id", retailerProfileController.updateProfilePhoto);
+router.put("/RetailerProfileCover/:id", retailerProfileController.updateCoverPhoto);
 
+
+retailerProfileController
 
 module.exports = router;

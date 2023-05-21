@@ -106,6 +106,7 @@ async function createOwnerProfile(params, callback) { //params ke ander models a
         return callback(error);
       });
   }
+  
   async function updateProfilePhotoServices(params, callback) {
     const userId = params.userId;
   

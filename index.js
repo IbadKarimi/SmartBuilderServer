@@ -9,6 +9,20 @@ const os = require('os');
 const fs = require('fs-extra');
 var bodyParser=require('body-parser')
 
+const corsOpts = {
+  origin: '*',
+
+  methods: [
+    'GET',
+    'POST',
+  ],
+
+  allowedHeaders: [
+    'Content-Type',
+  ],
+};
+
+app.use(cors(corsOpts));
 
 
 
@@ -40,7 +54,7 @@ app.use("/smart-builders", require("./routes/app.routes"));
 
 app.use(errors.errorHandler);
 
-app.use(cors());
+// app.use(cors());
 
 
 
